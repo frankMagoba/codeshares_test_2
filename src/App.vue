@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container>
-      <v-row class="mb-0">
+      <v-row>
         <v-col lg="4" cols="sm" class="pb-2">
           <v-text-field
             solo
@@ -17,6 +17,29 @@
         </v-col>
         <v-col lg="4" cols="sm" class="pb-2">
           <v-btn class="ma-2" outlined color="success"> Add new album </v-btn>
+        </v-col>
+      </v-row>
+
+      <v-row class="mb-3">
+        <v-col lg="4" cols="sm" class="pb-2">
+          <v-img
+            lazy-src="https://picsum.photos/id/11/10/6"
+            max-height="200"
+            max-width="200"
+            src="https://picsum.photos/id/11/500/300"
+          ></v-img>
+        </v-col>
+        <v-col lg="4" cols="sm" class="pb-2">
+          <v-row class="no-gutters">
+            <div class="col-auto">
+              <div class="primary fill-height">&nbsp;</div>
+            </div>
+            <div>
+              <h6 class="text-truncate text-uppercase">ALBUM</h6>
+              <h1>Album Name</h1>
+              <h6 class="text-truncate">By Band name</h6>
+            </div>
+          </v-row>
         </v-col>
       </v-row>
 
