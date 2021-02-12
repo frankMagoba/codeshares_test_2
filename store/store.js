@@ -80,6 +80,8 @@ export default new Vuex.Store({
         ]
     },
     getters: {
+        albums: state => state.albums,
+        artists: state => state.artists,
     },
 
     mutations: {

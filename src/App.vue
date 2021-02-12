@@ -4,6 +4,7 @@
       <v-row>
         <v-col lg="4" cols="sm" class="pb-2">
           <v-text-field
+            v-model="search"
             solo
             label="Search"
             prepend-inner-icon="mdi-search-web"
@@ -47,7 +48,7 @@
         <v-card-title> </v-card-title>
         <v-data-table
           :headers="headers"
-          :items="songs"
+          :items="albums"
           :search="search"
         ></v-data-table> </v-card
     ></v-container>
@@ -63,23 +64,30 @@ export default {
     return {
       search: "",
       headers: [
-        { text: "#", value: "no" },
-        { text: "Title", value: "title" },
-        { text: "Length", value: "length" },
+        { text: "#", value: "id" },
+        { text: "Title", value: "name" },
+        // { text: "Length", value: "length" },
       ],
-      songs: [
-        {
-          no: 1,
-          title: "Album track #1",
-          length: "4.09",
-        },
-        {
-          no: 2,
-          title: "Album track #2",
-          length: "4.20",
-        },
-      ],
+      // songs: [
+      //   {
+      //     no: 1,
+      //     title: "Album track #1",
+      //     length: "4.09",
+      //   },
+      //   {
+      //     no: 2,
+      //     title: "Album track #2",
+      //     length: "4.20",
+      //   },
+      // ],
     };
+  },
+  beforeMount() {},
+
+  computed: {
+    albums() {
+      return this.$store.getters["albums"];
+    },
   },
 };
 </script>
