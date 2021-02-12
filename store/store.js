@@ -11,16 +11,10 @@ export default new Vuex.Store({
     drawer: null,
   },
   getters: {
-    applications: state => state.applications,
   },
 
   mutations: {
-    SET_BAR_IMAGE (state, payload) {
-      state.barImage = payload
-    },
-    SET_DRAWER (state, payload) {
-      state.drawer = payload
-    },
+ 
   },
   actions: {
 
