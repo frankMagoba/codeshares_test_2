@@ -15,6 +15,9 @@
         <v-col lg="2" cols="sm" class="pb-2">
           <v-checkbox v-model="checkbox" label="Album"></v-checkbox>
         </v-col>
+        <v-col lg="4" cols="sm" class="pb-2">
+          <v-btn class="ma-2" outlined color="success"> Add new album </v-btn>
+        </v-col>
       </v-row>
 
       <v-card>
