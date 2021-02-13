@@ -11,10 +11,10 @@
           ></v-text-field
         ></v-col>
         <v-col lg="2" cols="sm" class="pb-2">
-          <v-checkbox v-model="checkbox" label="Artist"></v-checkbox>
+          <v-checkbox v-model="artistcheck" label="Artist"></v-checkbox>
         </v-col>
         <v-col lg="2" cols="sm" class="pb-2">
-          <v-checkbox v-model="checkbox" label="Album"></v-checkbox>
+          <v-checkbox v-model="albumcheck" label="Album"></v-checkbox>
         </v-col>
         <v-col lg="4" cols="sm" class="pb-2">
           <v-btn class="ma-2" outlined color="success" @click="dialog = true">
@@ -39,8 +39,8 @@
             </div>
             <div>
               <h6 class="text-truncate text-uppercase">ALBUM</h6>
-              <h1>{{albumName}}</h1>
-              <h6 class="text-truncate">By {{bandName}}</h6>
+              <h1>{{ albumName }}</h1>
+              <h6 class="text-truncate">By {{ bandName }}</h6>
             </div>
           </v-row>
         </v-col>
@@ -103,9 +103,12 @@ export default {
 
   data() {
     return {
+      albumcheck: false,
+      artistcheck: false,
+      isValid: false,
       albumPic: "",
-      albumName:"",
-      bandName:"",
+      albumName: "",
+      bandName: "",
       formData: {
         artist: "",
         album: "",
@@ -149,11 +152,11 @@ export default {
       }
     },
     selectApplication(item) {
-      console.log(item);
-      this.albumPic = item.image[2]['#text'];
-      this.albumName=item.name
-      this.bandName=item.artist.name
+      this.albumPic = item.image[2]["#text"];
+      this.albumName = item.name;
+      this.bandName = item.artist.name;
     },
+    save(){}
   },
 
   computed: {
