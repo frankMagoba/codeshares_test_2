@@ -115,7 +115,7 @@ export default {
       headers: [
         { text: "#", value: "@attr.rank" },
         { text: "Title", value: "name" },
-        // { text: "Length", value: "length" },
+        { text: "Artist", value: "artist.name" },
       ],
       // songs: [
       //   {
