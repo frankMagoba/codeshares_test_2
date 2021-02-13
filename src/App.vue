@@ -26,10 +26,10 @@
       <v-row class="mb-3">
         <v-col lg="4" cols="sm" class="pb-2">
           <v-img
-            lazy-src="https://picsum.photos/id/11/10/6"
+            :lazy-src="albumPic"
             max-height="200"
             max-width="200"
-            src="https://picsum.photos/id/11/500/300"
+            :src="albumPic"
           ></v-img>
         </v-col>
         <v-col lg="4" cols="sm" class="pb-2">
@@ -39,8 +39,8 @@
             </div>
             <div>
               <h6 class="text-truncate text-uppercase">ALBUM</h6>
-              <h1>Album Name</h1>
-              <h6 class="text-truncate">By Band name</h6>
+              <h1>{{albumName}}</h1>
+              <h6 class="text-truncate">By {{bandName}}</h6>
             </div>
           </v-row>
         </v-col>
@@ -49,6 +49,7 @@
       <v-card>
         <v-card-title> </v-card-title>
         <v-data-table
+          @click:row="selectApplication"
           :headers="headers"
           :items="albums"
           :search="search"
@@ -94,12 +95,17 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "App",
   components: {},
 
   data() {
     return {
+      albumPic: "",
+      albumName:"",
+      bandName:"",
       formData: {
         artist: "",
         album: "",
@@ -107,7 +113,7 @@ export default {
       search: "",
       dialog: false,
       headers: [
-        { text: "#", value: "id" },
+        { text: "#", value: "@attr.rank" },
         { text: "Title", value: "name" },
         // { text: "Length", value: "length" },
       ],
@@ -125,11 +131,34 @@ export default {
       // ],
     };
   },
-  beforeMount() {},
+  created() {
+    this.loadData();
+  },
+  methods: {
+    ...mapActions({
+      getAlbums: "getAlbums",
+    }),
+
+    async loadData() {
+      try {
+        await this.getAlbums(this.tag);
+      } catch (error) {
+        // TODO: show snackbar
+      } finally {
+        this.loading = false;
+      }
+    },
+    selectApplication(item) {
+      console.log(item);
+      this.albumPic = item.image[2]['#text'];
+      this.albumName=item.name
+      this.bandName=item.artist.name
+    },
+  },
 
   computed: {
     albums() {
-      return this.$store.getters["albums"];
+      return this.$store.getters["albumss"];
     },
   },
 };

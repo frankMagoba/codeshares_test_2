@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import types from './types'
+import api from '@/api';
 
+
+const { SAVE_ALBUMS } = types;
 
 Vue.use(Vuex)
 
@@ -36,6 +40,7 @@ export default new Vuex.Store({
                 name: "Butthole Surfers"
             }
         ],
+        albumss:[],
         albums: [
             {
                 id: "50ca839e-cfae-413d-a555-c287a4a0395e",
@@ -81,13 +86,33 @@ export default new Vuex.Store({
     },
     getters: {
         albums: state => state.albums,
+        albumss: state => state.albumss,
         artists: state => state.artists,
     },
 
     mutations: {
+        /**
+   * Save albums
+   *
+   * @param {Object} state - Vuex state
+   * @param {Object} payload - The albums to store
+   */
+        [SAVE_ALBUMS](state, payload) {
+            state.albumss = payload;
+        },
 
     },
     actions: {
-
+        async getAlbums({ commit }, payload) {
+            try {
+                const { album } = await api.fetchAlbums(payload);
+                commit(SAVE_ALBUMS, album);
+                return true;
+            } catch (error) {
+                return error;
+            }
+        },
     },
+
+
 })
