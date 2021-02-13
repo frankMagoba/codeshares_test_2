@@ -17,6 +17,7 @@ async function fetchTagInfo(tag) {
     const { data } = await axios.get(`${API.HOST}?method=${endpoint}&tag=${tag}&api_key=${API.KEY}&format=json`);
     return data.tag.wiki;
   } catch (error) {
+    // TODO: send to Sentry
     console.log(error);
     throw new Error(error.message);
   }

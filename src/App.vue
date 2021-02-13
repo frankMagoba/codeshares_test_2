@@ -144,7 +144,7 @@ export default {
 
     async loadData() {
       try {
-        await this.getAlbums(this.tag);
+        await this.getAlbums("all");
       } catch (error) {
         // TODO: show snackbar
       } finally {
